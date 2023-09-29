@@ -10,6 +10,8 @@
 * Fix Crashes With O, J, and M (erase(), end(), rend())
 */
 
+//Precondtition: None
+//Postcondition: None
 void vectorMenu()
 {
     system("cls");
@@ -26,11 +28,11 @@ void vectorMenu()
         switch (vectorMenuOption())
         {
         case 'X': return; break;
-        case 'A':
+        case 'A': // call studentVector.clear()
             studentVector.clear();
             std::cout << "Vector has been cleared." << endl;
             break;
-        case 'B':
+        case 'B': // call studentVector.reserve()
             studentVector.reserve(inputInteger("Enter the capacity to reserve (1..100): ", 1, 100));
             std::cout << "The vector has reserved the desired elements." << endl;
             break;
@@ -38,8 +40,8 @@ void vectorMenu()
             studentVector.resize(inputInteger("Enter the new size (1..100): ", 1, 100));
             std::cout << "The vector has been resize to the desired length." << endl;
             break;
-        case 'D': studentFileReadVector(studentVector); break;
-        case 'E':
+        case 'D': studentFileReadVector(studentVector); break; // call function to read input file to vector
+        case 'E': // call studentVector.pop_back()
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -48,7 +50,7 @@ void vectorMenu()
             std::cout << "Element, " << studentVector.back() << " has been removed from the vector." << endl;
             studentVector.pop_back();
             break;
-        case 'F':
+        case 'F': // call studentVector.front()
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -56,7 +58,7 @@ void vectorMenu()
             }
             std::cout << "The element from the front of the vector: [0] " << studentVector.front() << endl;
             break;
-        case 'G':
+        case 'G': // call studentVector.back()
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -64,7 +66,7 @@ void vectorMenu()
             }
             std::cout << "The element from the back of the vector: [" << (studentVector.size() - 1) << "] " << studentVector.back() << endl;
             break;
-        case 'H':
+        case 'H': // call studentVector.at(index) & studentVector[index]
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -76,7 +78,7 @@ void vectorMenu()
             cout << "vector.at(" << index << "): " << studentVector.at(index) << endl;
             cout << "vector[" << index << "]: " << studentVector[index] << endl;
             break;
-        case 'I':
+        case 'I': // call studentVector.begin()
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -84,7 +86,7 @@ void vectorMenu()
             }
             std::cout << "The iterator referring the first element: " << &*studentVector.begin() << " (" << *studentVector.begin() << ")" << endl;
             break;
-        case 'J':
+        case 'J': // call studentVector.end() FIX
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -92,7 +94,7 @@ void vectorMenu()
             }
             std::cout << "The iterator referring the past-the-end element: " << &*studentVector.end() << endl;
             break;
-        case 'K':
+        case 'K': // use iterators to loop through the vector
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -104,7 +106,7 @@ void vectorMenu()
                 cout << &*it << " (" << *it << ")" << endl;
             };
             break;
-        case 'L':
+        case 'L': // call studentVector.rbegin()
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -112,15 +114,15 @@ void vectorMenu()
             }
             std::cout << "The reverse iterator pointing to the last element: " << &*studentVector.rbegin() << " (" << *studentVector.rbegin() << ")" << endl;
             break;
-        case 'M':
-            if (studentVector.empty())
+        case 'M': // call studentVector.rend() FIX
+            if (studentVector.empty()) 
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
                 break;
             }
             std::cout << "The reverse iterator pointing to the theoretical element preceding the first element in the vector: " << &*studentVector.rend() << endl;
             break;
-        case 'N':
+        case 'N': // use reverse iterators to loop through the vector
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -177,6 +179,8 @@ void vectorMenu()
     } while (true);
 }
 
+//Precondtition: None
+//Postcondition: None
 char vectorMenuOption()
 {
     cout << endl;
@@ -208,6 +212,8 @@ char vectorMenuOption()
     return option;
 }
 
+//Precondtition:
+//Postcondition:
 void studentFileReadVector(vector<student>& studentVector)
 {
     fstream infile;
@@ -238,6 +244,8 @@ void studentFileReadVector(vector<student>& studentVector)
     displayVector(studentVector);
 }
 
+//Precondtition:
+//Postcondition:
 void displayVector(vector<student> studentVector)
 {
     std::cout << "The vector now has " << studentVector.size() << " elements." << endl << endl;
@@ -249,6 +257,8 @@ void displayVector(vector<student> studentVector)
     std::cout << endl;
 }
 
+//Precondtition:
+//Postcondition:
 void selectionSort(vector<student>& studentVector)
 {
 

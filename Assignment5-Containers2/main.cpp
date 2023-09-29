@@ -5,6 +5,7 @@
 #include <cmath>
 #include "vectorTest.h"
 #include "listTest.h"
+#include "integerList.h"
 #include "input.h"
 
 using namespace std;
@@ -24,7 +25,7 @@ int main()
         case 0: exit(1); break;
         case 1: vectorMenu(); break;
         case 2: listMenu(); break;
-        case 3: //rationalNumMenu(); break;
+        case 3: integerListMenu(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
@@ -54,5 +55,7 @@ int menuOption()
     int option = inputInteger("Option : ", 0, 3);
     return option;
 }
+
+
 
 

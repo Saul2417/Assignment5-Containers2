@@ -128,12 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="integerList.cpp" />
     <ClCompile Include="listTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="vectorTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="input.h" />
+    <ClInclude Include="integerList.h" />
     <ClInclude Include="listTest.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="vectorTest.h" />
