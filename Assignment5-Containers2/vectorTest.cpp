@@ -6,8 +6,8 @@
 #include "input.h"
 
 /* TO DO LIST:
-* Implement P, Q, S
-* Fix Crashes With O, J, and M (erase(), end(), rend())
+* Implement Q, S
+* Fix Crashes With J and M (end(), rend())
 */
 
 //Precondtition: None
@@ -21,13 +21,14 @@ void vectorMenu()
     vector<student> studentVector;
     vector<student> vector2;
     vector<student>::iterator it;
+    vector<student>::iterator it2;
     vector<student>::reverse_iterator rit;
 
     do
     {
         switch (vectorMenuOption())
         {
-        case 'X': return; break;
+        case '0': return; break;
         case 'A': // call studentVector.clear()
             studentVector.clear();
             std::cout << "Vector has been cleared." << endl;
@@ -140,8 +141,9 @@ void vectorMenu()
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
                 break;
             }
+            it = studentVector.begin();
             studentVector.erase(it);
-            std::cout << "An element after the begin iterator: " << *studentVector.begin() << " has been removed." << endl;
+            std::cout << "An element after the begin iterator: " << &*studentVector.begin() << " has been removed." << endl;
             break;
         case 'P':
             if (studentVector.empty())
@@ -149,7 +151,10 @@ void vectorMenu()
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
                 break;
             }
-            /*studentVector.erase(it, it); */
+            it = studentVector.begin();
+            it2 = studentVector.end() - 1;
+            std::cout << "tAll elements starting at begin iterator " << &*it << " and going up to end iterator " << &*it2 << " have been removed.";
+            studentVector.erase(it, it2); 
             break;
         case 'Q':
             /*studentVector.insert(it,); */
@@ -206,9 +211,9 @@ char vectorMenuOption()
     cout << "R. swap(): Exchanges the contents of the container with another vector of the same data type " << endl;
     cout << "S. Sort: Sort the vector" << endl;
     cout << string(100, char(196)) << endl;
-    cout << "0. Quit" << endl;
+    cout << "0. Return" << endl;
     cout << string(100, char(205)) << endl;
-    char option = toupper(inputChar("Option: ", "ABCDEFGHIJKLMNOPQRSX"));
+    char option = toupper(inputChar("Option: ", "ABCDEFGHIJKLMNOPQRS0"));
     return option;
 }
 

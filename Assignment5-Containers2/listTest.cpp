@@ -6,8 +6,8 @@
 #include "input.h"
 
 /* TO DO LIST:
-* Implement P, Q, S
-* Fix Crashes With O, J, and M (erase(), end(), rend())
+* Implement Q, S
+* Fix Crashes With J and M (erase(), end(), rend())
 * Further Testing
 * ADD COMMENTS
 */
@@ -23,13 +23,14 @@ void listMenu()
     list<student> studentList;
     list<student> list2;
     list<student>::iterator it;
+    list<student>::iterator it2;
     list<student>::reverse_iterator rit;
 
     do
     {
         switch (listMenuOption())
         {
-        case 'X': return; break;
+        case '0': return; break;
         case 'A':
             studentList.clear();
             std::cout << "List has been cleared." << endl;
@@ -136,8 +137,9 @@ void listMenu()
                 cout << "List is empty. Please enter elements into the list." << endl;
                 break;
             }
+            it = studentList.begin();
             studentList.erase(it);
-            std::cout << "An element after the begin iterator: " << *studentList.begin() << " has been removed." << endl;
+            std::cout << "An element after the begin iterator: " << &*studentList.begin() << " has been removed." << endl;
             break;
         case 'P':
             if (studentList.empty())
@@ -145,7 +147,10 @@ void listMenu()
                 cout << "List is empty. Please enter elements into the list." << endl;
                 break;
             }
-            /*studentList.erase(it, it); */
+            it = studentList.begin();
+            it2 = prev(studentList.end());
+            std::cout << "tAll elements starting at begin iterator " << &*it << " and going up to end iterator " << &*it2 << " have been removed.";
+            studentList.erase(it, it2);
             break;
         case 'Q':
             /*studentList.insert(it,); */
@@ -197,9 +202,9 @@ char listMenuOption()
     cout << "R. swap(): Exchanges the contents of the container with another list of the same data type " << endl;
     cout << "S. Sort: Sort the list" << endl;
     cout << string(100, char(196)) << endl;
-    cout << "0. Quit" << endl;
+    cout << "0. Return" << endl;
     cout << string(100, char(205)) << endl;
-    char option = toupper(inputChar("Option: ", "ABCDEFGHIJKLMNOPQRSX"));
+    char option = toupper(inputChar("Option: ", "ABCDEFGHIJKLMNOPQRS0"));
     return option;
 }
 
