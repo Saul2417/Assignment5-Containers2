@@ -138,8 +138,8 @@ void listMenu()
                 break;
             }
             it = studentList.begin();
-            studentList.erase(it);
             std::cout << "An element after the begin iterator: " << &*studentList.begin() << " has been removed." << endl;
+            studentList.erase(it);          
             break;
         case 'P':
             if (studentList.empty())

@@ -142,8 +142,8 @@ void vectorMenu()
                 break;
             }
             it = studentVector.begin();
-            studentVector.erase(it);
             std::cout << "An element after the begin iterator: " << &*studentVector.begin() << " has been removed." << endl;
+            studentVector.erase(it);            
             break;
         case 'P':
             if (studentVector.empty())
