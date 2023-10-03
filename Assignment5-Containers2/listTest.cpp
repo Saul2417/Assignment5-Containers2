@@ -6,8 +6,7 @@
 #include "input.h"
 
 /* TO DO LIST:
-* Implement Q, S
-* Fix Crashes With J and M (erase(), end(), rend())
+* Fix J and M (end(), rend())
 * Further Testing
 * ADD COMMENTS
 */
@@ -32,15 +31,20 @@ void listMenu()
         {
         case '0': return; break;
         case 'A':
+        {      
             studentList.clear();
             std::cout << "List has been cleared." << endl;
+        }
             break;
         case 'B':
+        {  
             studentList.resize(inputInteger("Enter the new size (1..100): ", 1, 100));
             std::cout << "The list has been resize to the desired length." << endl;
+        }
             break;
         case 'C': studentFileReadList(studentList, 'F'); break;
-        case 'D': 
+        case 'D':
+        {      
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
@@ -48,17 +52,21 @@ void listMenu()
             }
             std::cout << "Element, " << studentList.front() << " has been removed from the list." << endl;
             studentList.pop_front();
+        }
             break;
         case 'E':
+        {      
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
                 break;
             }
             std::cout << "The element from the front of the list: [0] " << studentList.front() << endl;
+        }
             break;
         case 'F': studentFileReadList(studentList, 'B'); break;
         case 'G':
+        {
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
@@ -66,16 +74,20 @@ void listMenu()
             }
             std::cout << "Element, " << studentList.back() << " has been removed from the list." << endl;
             studentList.pop_back();
+        }
             break;
         case 'H':
+        {       
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
                 break;
             }
             std::cout << "The element from the back of the list: [" << (studentList.size() - 1) << "] " << studentList.back() << endl;
+        }
             break;
         case 'I':
+        {       
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
@@ -83,15 +95,19 @@ void listMenu()
             }
             std::cout << "The iterator referring the first element: " << &*studentList.begin() << " (" << *studentList.begin() << ")" << endl;
             break;
+        }
         case 'J':
+        {     
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
                 break;
             }
             std::cout << "The iterator referring the past-the-end element: " << &*studentList.end() << endl;
+        }
             break;
         case 'K':
+        {       
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
@@ -102,24 +118,32 @@ void listMenu()
             {
                 cout << &*it << " (" << *it << ")" << endl;
             };
+        }
             break;
         case 'L':
+        {       
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
                 break;
             }
             std::cout << "The reverse iterator pointing to the last element: " << &*studentList.rbegin() << " (" << *studentList.rbegin() << ")" << endl;
+        }    
             break;
         case 'M':
+        {        
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
                 break;
             }
             std::cout << "The reverse iterator pointing to the theoretical element preceding the first element in the list: " << &*studentList.rend() << endl;
+        }    
             break;
         case 'N':
+        {
+
+        
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
@@ -130,8 +154,12 @@ void listMenu()
             {
                 cout << &*rit << " (" << *rit << ")" << endl;
             }
-            break;
+        }
+        break;
         case 'O':
+        {
+
+        
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
@@ -140,8 +168,10 @@ void listMenu()
             it = studentList.begin();
             std::cout << "An element after the begin iterator: " << &*studentList.begin() << " has been removed." << endl;
             studentList.erase(it);          
+        }    
             break;
         case 'P':
+        {      
             if (studentList.empty())
             {
                 cout << "List is empty. Please enter elements into the list." << endl;
@@ -151,23 +181,42 @@ void listMenu()
             it2 = prev(studentList.end());
             std::cout << "tAll elements starting at begin iterator " << &*it << " and going up to end iterator " << &*it2 << " have been removed.";
             studentList.erase(it, it2);
+        }    
             break;
         case 'Q':
-            /*studentList.insert(it,); */
-            break;
+        {     
+            it = studentList.begin();
+            newStudent.setName(inputString("Enter a new student name: ", true));
+            newStudent.setGradeLevel(to_string(inputInteger("Enter their grade level (1-Freshman, 2-Sophmore, 3-Junior, or 4-Senior): ", 1, 4)));
+            newStudent.setGPA(inputDouble("Enter their GPA: ", 0.0, 4.0));
+            studentList.insert(++it, newStudent);           
+        }
+        break;
         case 'R':
+        {
+
+        
             cout << "List (list2) is initially empty." << endl << endl;
             studentList.swap(list2);
             cout << "List (studentList) is empty after swapped with list (list2)." << endl << endl;
             cout << "List (list2) now has " << list2.size() << " elements" << endl;
+        }
             break;
         case 'S':
+        {
+
+        
             if (studentList.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
                 break;
             }
-            /*selectionSort(studentVector); */
+           /* std::sort(studentList.begin(), studentList.end());*/
+            /*for (it = studentList.begin(); it != studentList.end(); it++)
+            {
+                cout << &*it << " (" << *it << ")" << endl;
+            };*/
+        }
             break;
         default: std::cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         system("pause");

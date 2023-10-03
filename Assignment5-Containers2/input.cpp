@@ -1,7 +1,6 @@
 #pragma once
 #include "input.h"
 
-
 //PreCondition: valid yes (char) or no (char)
 //PostCondition: returns an uppercase  yes (char) or no (char) 
 char inputChar(string prompt, char yes, char no)

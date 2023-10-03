@@ -24,6 +24,7 @@ void integerListMenu()
         case 'X': return; break; // return to main
         case 'A': integerList.push_back(inputInteger("Add an integer: ")); break; // push integer into the list
         case 'B': // use iterator to remove every instance of an integer from the list
+        {       
             numToDelete = inputInteger("Delete an integer: ");
             tempSize = integerList.size();
             for (it = integerList.begin(); it != integerList.end(); it++)
@@ -38,8 +39,10 @@ void integerListMenu()
             {
                 std::cout << "List does not contain " << numToDelete << endl;
             }
+        }
             break;
         case 'C': // use iterator display the list
+        {       
             if (integerList.empty())
             {
                 std::cout << "List is empty " << endl;
@@ -53,8 +56,10 @@ void integerListMenu()
                 }
                 std::cout << endl;
             }
+        }
             break;
         case 'D': // CODE GOES INSIDE
+        {     
             if (integerList.empty())
             {
                 std::cout << "List is empty " << endl;
@@ -62,7 +67,8 @@ void integerListMenu()
             else
             {
                 // Implement a frequency table or similar code
-            }
+            } 
+        }
             break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }

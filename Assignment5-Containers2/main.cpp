@@ -1,8 +1,6 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <vector>
-#include <cmath>
 #include "vectorTest.h"
 #include "listTest.h"
 #include "integerList.h"
@@ -10,11 +8,6 @@
 
 using namespace std;
 int menuOption();
-
-/* TO DO LIST:
-* Implement P, Q, S
-* Fix Crashes With O, J, and M (erase(), end(), rend())
-*/
 
 int main()
 {
