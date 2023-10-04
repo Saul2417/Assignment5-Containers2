@@ -10,8 +10,6 @@
 * Further Testing
 */
 
-enum {Freshman};
-
 //Precondtition: None
 //Postcondition: None
 void vectorMenu()
@@ -22,10 +20,9 @@ void vectorMenu()
     student newStudent;
     vector<student> studentVector;
     vector<student> vector2;
-    //vector<student>::iterator it;
+    vector<student>::iterator it;
     vector<student>::iterator it2;
     vector<student>::reverse_iterator rit;
-    auto it = studentVector.end();
 
     do
     {
@@ -63,9 +60,7 @@ void vectorMenu()
         }
             break;
         case 'F': // call studentVector.front()
-        {
-
-        
+        {      
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;

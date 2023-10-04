@@ -1,12 +1,11 @@
 #include <iostream>
 #include <list>
+#include <map>
 #include "integerList.h"
 #include "input.h"
 
-/* TO DO LIST:
-* Implement D
-* Further Testing
-*/
+void createFrequencyTable(map<int, int>& table, list<int> integerList);
+void displayFrequencyTable(map<int, int> table);
 
 //Precondtition: None
 //Postcondition: None
@@ -14,6 +13,7 @@ void integerListMenu()
 {
     list<int> integerList;
     list<int>::iterator it;
+    map<int, int> frequencyTable;
     int numToDelete;
     int tempSize;
 
@@ -67,6 +67,8 @@ void integerListMenu()
             else
             {
                 // Implement a frequency table or similar code
+                createFrequencyTable(frequencyTable, integerList);
+                displayFrequencyTable(frequencyTable);
             } 
         }
             break;
@@ -75,6 +77,35 @@ void integerListMenu()
         cout << "\n";
         system("pause");
     } while (true);
+}
+
+//Precondtition: None
+//Postcondition: None
+void createFrequencyTable(map<int, int>& table, list<int> integerList)
+{
+    for (auto it = integerList.begin(); it != integerList.end(); it++)
+    {
+        if (table.count(*it))
+        {
+            table.at(*it)++;
+        }
+        else
+        {
+            table.emplace(*it, 1);
+        }
+    }
+}
+
+//Precondtition: None
+//Postcondition: None
+void displayFrequencyTable(map<int, int> table)
+{
+    map<int, int>::iterator itt;
+    cout << endl << "List: " << endl;
+    for (itt = table.begin(); itt != table.end(); itt++)
+    {
+        cout << itt->first << ": " << itt->second << endl;
+    }
 }
 
 //Precondtition: None

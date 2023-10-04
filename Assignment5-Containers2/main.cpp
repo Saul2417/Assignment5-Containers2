@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <map>
 #include "vectorTest.h"
 #include "listTest.h"
 #include "integerList.h"
