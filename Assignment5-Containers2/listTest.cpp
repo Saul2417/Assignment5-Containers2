@@ -21,6 +21,7 @@ void listMenu()
 	system("cls");
 	int index;
 	int size;
+	student* pos;
 	student newStudent;
 	list<student> studentList;
 	list<student> list2;
@@ -34,7 +35,7 @@ void listMenu()
 		switch (listMenuOption())
 		{
 
-		case '0': {return; }break;
+		case '0': return; break;
 
 		case 'A':
 		{
@@ -109,8 +110,8 @@ void listMenu()
 				cout << "List is empty. Please enter elements into the list." << endl;
 				break;
 			}
-			auto it = studentList.end();
-			std::cout << "The iterator referring the past-the-end element: " << &it << endl;
+			it = studentList.end();
+			std::cout << "The iterator referring the past-the-end element: " << next(&*--it)  << endl;
 		}
 		break;
 		case 'K':
