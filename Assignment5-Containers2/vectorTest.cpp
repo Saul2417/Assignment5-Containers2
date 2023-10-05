@@ -265,8 +265,8 @@ char vectorMenuOption()
 	return option;
 }
 
-//Precondtition:
-//Postcondition:
+//Precondtition: None
+//Postcondition: None
 void studentFileReadVector(vector<student>& studentVector)
 {
 	fstream infile;

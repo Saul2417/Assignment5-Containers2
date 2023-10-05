@@ -35,22 +35,22 @@ void listMenu()
 		switch (listMenuOption())
 		{
 
-		case '0': return; break;
+		case '0': return; break; // return to main
 
-		case 'A':
+		case 'A': // clear list
 		{
 			studentList.clear();
 			std::cout << "List has been cleared." << endl;
 		}
 		break;
-		case 'B':
+		case 'B': // resize list
 		{
 			studentList.resize(inputInteger("Enter the new size (1..100): ", 1, 100));
 			std::cout << "The list has been resize to the desired length." << endl;
 		}
 		break;
-		case 'C': {studentFileReadList(studentList, 'F'); } break;
-		case 'D':
+		case 'C': {studentFileReadList(studentList, 'F'); } break; // read from input.dat and push_front() each new element onto the list
+		case 'D': // call pop_front() to pop the first element in the list
 		{
 			if (studentList.empty())
 			{
@@ -61,7 +61,7 @@ void listMenu()
 			studentList.pop_front();
 		}
 		break;
-		case 'E':
+		case 'E': // call front() to display the first element in the list
 		{
 			if (studentList.empty())
 			{
@@ -71,7 +71,7 @@ void listMenu()
 			std::cout << "The element from the front of the list: [0] " << studentList.front() << endl;
 		}
 		break;
-		case 'F': studentFileReadList(studentList, 'B'); break;
+		case 'F': studentFileReadList(studentList, 'B'); break; // read from input.dat and push_back() each new element onto the list
 		case 'G':
 		{
 			if (studentList.empty())
@@ -83,7 +83,7 @@ void listMenu()
 			studentList.pop_back();
 		}
 		break;
-		case 'H':
+		case 'H': // call back() to display the last element in the list
 		{
 			if (studentList.empty())
 			{
@@ -93,7 +93,7 @@ void listMenu()
 			std::cout << "The element from the back of the list: [" << (studentList.size() - 1) << "] " << studentList.back() << endl;
 		}
 		break;
-		case 'I':
+		case 'I': // use begin() to get a reference to the first element of the list
 		{
 			if (studentList.empty())
 			{
@@ -103,7 +103,7 @@ void listMenu()
 			std::cout << "The iterator referring the first element: " << &*studentList.begin() << " (" << *studentList.begin() << ")" << endl;
 			break;
 		}
-		case 'J':
+		case 'J': // use end() to get a reference to the past-the end element of the list
 		{
 			if (studentList.empty())
 			{
@@ -114,7 +114,7 @@ void listMenu()
 			std::cout << "The iterator referring the past-the-end element: " << next(&*--it)  << endl;
 		}
 		break;
-		case 'K':
+		case 'K': // use iterators to step through the list
 		{
 			if (studentList.empty())
 			{
@@ -128,7 +128,7 @@ void listMenu()
 			};
 		}
 		break;
-		case 'L':
+		case 'L': // use rbegin() to get a reference to the last element of the list
 		{
 			if (studentList.empty())
 			{
@@ -138,7 +138,7 @@ void listMenu()
 			std::cout << "The reverse iterator pointing to the last element: " << &*studentList.rbegin() << " (" << *studentList.rbegin() << ")" << endl;
 		}
 		break;
-		case 'M':
+		case 'M': // use rend() to get a reference to the theoretical element before the list
 		{
 			if (studentList.empty())
 			{
@@ -149,7 +149,7 @@ void listMenu()
 			std::cout << "The reverse iterator pointing to the theoretical element preceding the first element in the list: " << &*++rit.base() << endl;
 		}
 		break;
-		case 'N':
+		case 'N': // use reverse iterators to step through the list
 		{
 			if (studentList.empty())
 			{
@@ -163,7 +163,7 @@ void listMenu()
 			}
 		}
 		break;
-		case 'O':
+		case 'O': // use erase() with an iterator to remove an element from the list
 		{
 			if (studentList.empty())
 			{
@@ -175,7 +175,7 @@ void listMenu()
 			studentList.erase(it);
 		}
 		break;
-		case 'P':
+		case 'P': // use erase() with multiple iterators to remove multiple elements from the list
 		{
 			if (studentList.empty())
 			{
@@ -188,7 +188,7 @@ void listMenu()
 			studentList.erase(it, it2);
 		}
 		break;
-		case 'Q':
+		case 'Q': // use insert() to insert an element into the list
 		{
 			it = studentList.begin();
 			newStudent.setName(inputString("Enter a new student name: ", true));
@@ -284,6 +284,8 @@ void studentFileReadList(list<student>& studentList, char frontOrBack)
 		newStudent.setGradeLevel(newGradeLevel);
 		getline(infile, newGPA);
 		newStudent.setGPA(stod(newGPA));
+
+		// check for user option to push back or front each element
 		if (frontOrBack == 'F')
 		{
 			studentList.push_front(newStudent);
