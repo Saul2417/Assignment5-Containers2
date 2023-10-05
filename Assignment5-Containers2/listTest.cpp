@@ -7,13 +7,6 @@
 #include "listTest.h"
 #include "input.h"
 
-
-/* TO DO LIST:
-* Fix J (end())
-* Further Testing
-* ADD COMMENTS
-*/
-
 //Precondition: None
 //Postcondition: None
 void listMenu()
