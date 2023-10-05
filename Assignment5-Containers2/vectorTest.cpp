@@ -1,20 +1,17 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <map>
 #include "Student.h"
 #include "vectorTest.h"
 #include "input.h"
-
-/* TO DO LIST:
-* Fix J and M (end(), rend())
-* Further Testing
-*/
 
 //Precondtition: None
 //Postcondition: None
 void vectorMenu()
 {
     system("cls");
+    student* pos;
     int index;
     int size;
     student newStudent;
@@ -23,6 +20,7 @@ void vectorMenu()
     vector<student>::iterator it;
     vector<student>::iterator it2;
     vector<student>::reverse_iterator rit;
+    map<int, string> gradeLevel = { {1, "Freshman"}, {2, "Sophomore"}, {3, "Junior"}, {4, "Senior"} };
 
     do
     {
@@ -41,7 +39,7 @@ void vectorMenu()
             std::cout << "The vector has reserved the desired elements." << endl; 
         }
             break;
-        case 'C': 
+        case 'C': // call studentVector.resize()
         {      
             studentVector.resize(inputInteger("Enter the new size (1..100): ", 1, 100));
             std::cout << "The vector has been resize to the desired length." << endl;
@@ -105,17 +103,22 @@ void vectorMenu()
             break;
         case 'J': 
         {
-            // call studentVector.end() FIX
+            // call studentVector.end()
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
                 break;
-            }  
-            auto it = studentVector.end();
-            cout << "The iterator referring the past-the-end element: " << &it << endl;
+            }
+            pos = studentVector.data();
+            for (it = studentVector.begin(); it != studentVector.end(); it++)
+            {
+                pos++;
+            };
+            cout << "The iterator referring the past-the-end element: " << pos << endl;
         }
             break;      
         case 'K': // use iterators to loop through the vector
+
         {  
             if (studentVector.empty())
             {
@@ -139,21 +142,19 @@ void vectorMenu()
             std::cout << "The reverse iterator pointing to the last element: " << &*studentVector.rbegin() << " (" << *studentVector.rbegin() << ")" << endl;
         }
             break;
-        case 'M': // call studentVector.rend() FIX
+        case 'M': // call studentVector.rend()
         {     
             if (studentVector.empty()) 
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
                 break;
             }
-            auto rit = studentVector.rend();
-            std::cout << "The reverse iterator pointing to the theoretical element preceding the first element in the vector: " << &rit << endl; 
+            rit = studentVector.rend();          
+            std::cout << "The reverse iterator pointing to the theoretical element preceding the first element in the vector: " << &*++rit.base() << endl;
         }
             break;
         case 'N': // use reverse iterators to loop through the vector
-        {
-
-        
+        {     
             if (studentVector.empty())
             {
                 cout << "Vector is empty. Please enter elements into the vector." << endl;
@@ -166,7 +167,7 @@ void vectorMenu()
             }
         }
             break;
-        case 'O': 
+        case 'O': // use an iterator to delete an element in the vector
         {    
             if (studentVector.empty())
             {
@@ -179,7 +180,7 @@ void vectorMenu()
         }           
             break; 
        
-        case 'P':
+        case 'P': // use iterators to delete multiple elements in the vector
         {   
             if (studentVector.empty())
             {
@@ -192,16 +193,16 @@ void vectorMenu()
             studentVector.erase(it, it2); 
         }
             break;
-        case 'Q': 
+        case 'Q': // set a new student element and use insert() to add it into the vector
         {     
             it = studentVector.begin();
             newStudent.setName(inputString("Enter a new student name: ", true));
-            newStudent.setGradeLevel(to_string(inputInteger("Enter their grade level (1-Freshman, 2-Sophmore, 3-Junior, or 4-Senior): ", 1, 4)));
+            newStudent.setGradeLevel(gradeLevel.at((inputInteger("Enter their grade level (1-Freshman, 2-Sophomore, 3-Junior, or 4-Senior): ", 1, 4))));
             newStudent.setGPA(inputDouble("Enter their GPA: ", 0.0, 4.0));
             studentVector.insert(++it, newStudent); 
         }
             break;
-        case 'R':
+        case 'R': // call swap() to exchange the elements in the vector with another vector of the same time
         {      
             cout << "Vector (vector2) is initially empty." << endl << endl;
             studentVector.swap(vector2);
@@ -214,7 +215,7 @@ void vectorMenu()
         }
             break;
 
-        case 'S':
+        case 'S': // swap the elements in the vector
         {      
             if (studentVector.empty())
             {
@@ -296,8 +297,8 @@ void studentFileReadVector(vector<student>& studentVector)
     displayVector(studentVector);
 }
 
-//Precondtition:
-//Postcondition:
+//Precondtition: None
+//Postcondition: None
 void displayVector(vector<student> studentVector)
 {
     std::cout << "The vector now has " << studentVector.size() << " elements." << endl << endl;
@@ -307,11 +308,4 @@ void displayVector(vector<student> studentVector)
         std::cout << "[" << index << "]: " << studentVector[index] << endl;
     }
     std::cout << endl;
-}
-
-//Precondtition:
-//Postcondition:
-void selectionSort(vector<student>& studentVector)
-{
-
 }
